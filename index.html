@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Dialog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+        * {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            background-color: white;
+            cursor: not-allowed;
+        }
+
+        .loadingIcon {
+            width: 20vw;
+            animation: loadingIconSpin 2s infinite;
+        }
+
+        @keyframes loadingIconSpin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        dialog {
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        dialog::backdrop {
+            backdrop-filter: blur(100px);
+        }
+
+        button {
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background 0.25s, color 0.25s;
+            color: #000;
+        }
+
+        button:hover,
+        button:active {
+            background-color: rgba(0, 0, 0, 0.5);
+            transition: background 0.25s, color 0.25s;
+            color: #fff;
+        }
+
+        .warning::backdrop {
+            animation: warningFlash 3s ease-in-out infinite;
+        }
+
+        @keyframes warningFlash {
+            0% {
+                background: rgba(0, 0, 0, 0.1);
+            }
+
+            50% {
+                background-color: rgba(255, 67, 67, 0.7);
+            }
+
+            100% {
+                background: rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        .background {
+            background-image: url("background.PNG");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            cursor: not-allowed;
+            backdrop-filter: blur(10px);
+        }
+
+        .bug {
+            width: 100px;
+            height: 100px;
+            position: fixed;
+            transform: translate(-50%, -50%);
+            background-image: url("ladybug.png");
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="backgroundContainer">
+        <div class="background"></div>
+    </div>
+    <div class="container">
+        <h1>
+            Sadie Web
+        </h1>
+        <h2>
+            About Bug
+        </h2>
+        <p style="text-indent: 50px;">
+            Grantie's baby sister, Sadie, affectionately known as Sadie Bug or Bug, is a bundle of joy that brings
+            immense cuteness and adorableness to lives. With her contagious smile and irresistible charm, Sadie
+            instantly melts hearts and becomes the center of attention wherever she goes. Her genuine affection for
+            others shines through her actions and interactions, as she spreads love and warmth to everyone around her.
+        </p>
+        <p style="text-indent: 50px;">
+            Although Sadie's loving nature is undeniable, her mischievous side occasionally emerges, earning her the
+            reputation of being a bit of a troublemaker. Like a whirlwind of energy, she can be quite destructive at
+            times, leaving a trail of chaos in her wake. From toppling towers of blocks to unraveling carefully
+            organized shelves, Sadie's curiosity and exuberance often lead her on exciting adventures that may not
+            always end well for her surroundings.
+        </p>
+        <p style="text-indent: 50px;">
+            Nevertheless, even amidst the chaos, it's hard to resist falling under Sadie's spell. Her endearing antics
+            and infectious laughter make it impossible to stay mad for long. Grantie and everyone who knows Sadie
+            recognize that her mischievous moments are simply part of her growing and learning process. With gentle
+            guidance and redirection, her destructive tendencies can be channeled into productive exploration and
+            creative play.
+        </p>
+        <p style="text-indent: 50px;">
+            As Grantie watches Sadie navigate the world with wide-eyed wonder, they marvel at the beautiful balance
+            between her adorable nature and her mischievous streak. Grantie cherishes every moment spent with his baby
+            sister, finding joy in her loving cuddles and being captivated by her delightful antics. Sadie Bug, with all
+            her cuteness, adorability, and occasional mischief, has undoubtedly become an irreplaceable part of
+            Grantie's life, bringing a mix of laughter, excitement, and endless love to his shared journey of growing
+            up together.
+        </p>
+    </div>
+    <dialog class="warning">
+        <h1>
+            <img src="ladybug.png" alt="Ladybug" title="Ladybug"
+                style="width: 50px; animation: loadingIconSpin 2s infinite;" />
+            Warning!
+        </h1>
+        <p>
+            This website contains Sadie content. You may have a cuteness overload.
+        </p>
+        <button>
+            Continue
+        </button>
+    </dialog>
+    <div class="loading">
+        <img src="ladybug.png" alt="Ladybug Loading Icon" title="Loading..." class="loadingIcon" />
+    </div>
+    <script>
+        window.addEventListener("load", () => {
+            setTimeout(() => {
+                document.querySelector(".loading").hidden = true;
+                document.querySelector(".warning").showModal();
+            }, 2000);
+        });
+
+        document.querySelector(".warning button").addEventListener("click", () => {
+            document.querySelector(".warning").close();
+            setTimeout(() => {
+                document.querySelector(".background").hidden = true;
+            }, 2000);
+        });
+
+        document.addEventListener("contextmenu", (e) => {
+            e.preventDefault();
+            var x = e.clientX;
+            var y = e.clientY;
+
+            try {
+                document.querySelectorAll(".bug").forEach(index => {
+                    index.remove();
+                });
+            } catch {
+                console.log("no bug found");
+            }
+
+            var bug = document.createElement("div");
+            bug.classList.add("bug");
+            bug.style.left = x+"px";
+            bug.style.top = y+"px";
+            document.body.appendChild(bug);
+
+            setTimeout(() => {
+                try {
+                    bug.remove();
+                } catch {
+                    console.log("bug moved");
+                }
+            }, 4000);
+            return false;
+        });
+    </script>
+</body>
+
+</html>
